@@ -1,23 +1,25 @@
 #include <stdio.h>
 
-void imprimirVet(int *v, int n){
-    printf("\nVetor: |");
+void imprimirVetor(int *v, int n){
+    printf("Vetor: |");
     for(int i = 0; i < n; i++){
         printf("%d |", v[i]);
     }
 }
 
-int SelectionSortIt(int v[], int tamanho){
-    int min = v[0];
-    int aux;
-    for(int i = 0; i < (tamanho - 1); i++){ // percorre o vetor inteiro
+void selectionSort(int *v, int n){
+    int i, j, min, aux;
+    int ciclos = 0;
+    for(i = 0; i < n - 1; i++){
         min = i;
-        for(int j = i + 1; j < tamanho; j++){ // percorre do i até o final
-            if(v[j] < v[min]){ // verifica se achou um menor que o atual
-                min = j; // atualiza o menor
+        ciclos += 1;
+        printf("\nCiclos: %d\n", ciclos);
+        for(j = i + 1; j < n; j++){
+            if(v[j] < v[min]){
+                min = j;
             }
         }
-        if(i != min){ // se achou um menor que o lugar que estou, eu troco
+        if(i != min){
             aux = v[i];
             v[i] = v[min];
             v[min] = aux;
@@ -25,11 +27,11 @@ int SelectionSortIt(int v[], int tamanho){
     }
 }
 
-
 int main()
 {
-    int A[5] = {2, 1, 5, 3, 4};
-    SelectionSortIt(A, 5);
-    imprimirVet(A, 5);
+    int A[10] = {6, 10, 42, 52, 31, 7, 12, 35, 90, 5};
+    imprimirVetor(A, 10);
+    selectionSort(A, 10);
+    imprimirVetor(A, 10);
     return 0;
 }
